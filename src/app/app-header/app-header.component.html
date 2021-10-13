@@ -1,0 +1,77 @@
+<mat-toolbar class="primary-color-bkg">
+  <ion-grid fixed class="inherit-padding grid">
+      <ion-row>
+          <ion-col class="inherit-padding" size="9">
+              <ion-grid class="inherit-padding">
+                  <ion-row>
+                      <ion-col class="flex-display inherit-padding ion-text-center" size="2">
+                          <img src="https://oneliving.com.my/image/oneliving/image/data/logo/Logo%20(Website%20Blk).jpg" height=100 width=150>
+                      </ion-col>
+                      <ion-col class="flex-display inherit-padding" size="10">
+                          <ion-searchbar class="search-bar" #searchbar (keyup.enter)="search(searchbar.value)" placeholder="Search Products">
+                          </ion-searchbar>
+                      </ion-col>
+                  </ion-row>
+                  <ion-row style="margin-top: 6px;">
+                      <ion-col class="flex-display inherit-padding scrollable" offset="2" size="10">
+                          <div *ngFor="let menu of menuList">
+                              <div class="parent-node" *ngIf="menu.children !== undefined && menu.children.length === 0">
+                                  <a class="white-text parent-menu" mat-button [routerLink]="menu.url" [queryParams]="menu.payload" routerLinkActive="active"><ion-icon [name]="menu.icon" class="icon"></ion-icon>{{ menu.title }}</a>
+                              </div>
+                              <div *ngIf="menu.children !== undefined && menu.children.length > 0">
+                                  <a class="white-text parent-menu" mat-button [matMenuTriggerFor]="subMenu"><ion-icon [name]="menu.icon" class="icon"></ion-icon>{{ menu.title }}</a>
+                                  <mat-menu #subMenu="matMenu">
+                                      <div *ngFor="let option of menu.children">
+                                          <a class="black-text child-menu" mat-button [routerLink]="option.url" routerLinkActive="active"><ion-icon [name]="option.icon" class="icon"></ion-icon>{{ option.title }}</a>
+                                      </div>
+                                  </mat-menu>
+                              </div>
+                          </div>
+                      </ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-col>
+          <ion-col class="flex-display inherit-padding center-vertically" size="3">
+              <ion-grid class="inherit-padding ">
+                  <ion-row>
+                      <ion-col class="flex-display inherit-padding scrollable row-spaces" offset="2" size="10">
+                          <div *ngFor="let menu of userMenu">
+                          <ng-container *ngIf="menu.title === 'Account' && authorization === Authorization.SIGN_IN; else showMenu">
+                              <div>
+                                  <a class="white-text parent-menu px-0" mat-button (click)="logout()"><ion-icon name="log-out-outline" class="user-icon"></ion-icon>{{authorization}}</a>
+                              </div>
+                          </ng-container>
+                          <ng-template #showMenu>
+                              <div *ngIf=" menu.children !== undefined && menu.children.length === 0">
+                                  <ng-container *ngIf="menu.title === 'cart' || menu.title === 'Cart'; else subMenu">
+                                      <a class="white-text parent-menu" mat-button [routerLink]="menu.url" [queryParams]="menu.payload" routerLinkActive="active">
+                                          <ion-icon [name]="menu.icon" class="user-icon"></ion-icon>
+                                          <ion-badge class="cart-badge">{{ cart$ | async}}</ion-badge>
+                                      </a>
+                                  </ng-container>
+                                  <ng-template #subMenu>
+                                      <a class="white-text parent-menu" mat-button [routerLink]="menu.url" [queryParams]="menu.payload" routerLinkActive="active"><ion-icon [name]="menu.icon" class="user-icon"></ion-icon></a>
+                                  </ng-template>
+                              </div>
+                              <div *ngIf=" menu.children !== undefined && menu.children.length > 0">
+                                  <a class="white-text parent-menu" mat-button [matMenuTriggerFor]="userSubMenu"><ion-icon [name]="menu.icon" class="user-icon"></ion-icon></a>
+                                  <mat-menu #userSubMenu="matMenu">
+                                      <div *ngFor="let option of menu.children">
+                                          <ng-container *ngIf="option.title === Authorization.LOGOUT; else children">
+                                              <a class="black-text child-menu" mat-button (click)="logout()"><ion-icon name="log-out-outline" class="icon"></ion-icon>{{authorization}}</a>
+                                          </ng-container>
+                                          <ng-template #children>
+                                              <a class="black-text child-menu" mat-button [routerLink]="option.url" routerLinkActive="active"><ion-icon [name]="option.icon" class="icon"></ion-icon>{{ option.title }}</a>
+                                          </ng-template>
+                                      </div>
+                                  </mat-menu>
+                              </div>
+                          </ng-template>
+                      </div>
+                      </ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</mat-toolbar>
