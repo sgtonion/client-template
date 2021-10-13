@@ -2,8 +2,10 @@ import {
   AfterViewInit, Component, ComponentFactoryResolver, Input, OnInit, QueryList,
   ViewChildren, ViewContainerRef
 } from '@angular/core';
-import { ColNode, GridNode, RowNode } from 'src/utils/layout-models/layout-node';
-import { LayoutNodeColComponent } from '../layout-node-col/layout-node-col.component';
+import { ColNode } from 'src/utils/layout-models/col-node';
+import { GridNode } from 'src/utils/layout-models/grid-node';
+import { RowNode } from 'src/utils/layout-models/row-node';
+import { LayoutNodeDefaultComponent } from '../layout-node-default/layout-node-default.component';
 
 @Component({
   selector: 'app-layout-node-grid',
@@ -12,7 +14,7 @@ import { LayoutNodeColComponent } from '../layout-node-col/layout-node-col.compo
 })
 export class LayoutNodeGridComponent implements OnInit, AfterViewInit {
   @Input() layoutNode: GridNode = new GridNode([
-    new RowNode([ new ColNode(LayoutNodeColComponent, null) ])
+    new RowNode([ new ColNode(LayoutNodeDefaultComponent, null) ])
   ]);
   @Input() data: any;
   @ViewChildren('viewContainerRef', { read: ViewContainerRef }) viewContainerRef: QueryList<ViewContainerRef>;

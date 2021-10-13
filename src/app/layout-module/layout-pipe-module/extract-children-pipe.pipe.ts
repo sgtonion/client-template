@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { LayoutNode } from 'src/utils/layout-models/layout-node';
+import { INode } from 'src/utils/layout-models/interfaces';
 
 @Pipe({
   name: 'extractChildren',
@@ -7,7 +7,7 @@ import { LayoutNode } from 'src/utils/layout-models/layout-node';
 })
 export class ExtractChildrenPipePipe implements PipeTransform {
 
-  transform(node: LayoutNode, ...args: unknown[]): LayoutNode[] {
+  transform<T>(node: INode<T>): T {
     return node.getChildren();
   }
 

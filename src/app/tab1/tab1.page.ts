@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { ColNode, GridNode, RowNode } from 'src/utils/layout-models/layout-node';
-import { LayoutNodeColComponent } from '../layout-module/layout-node-col/layout-node-col.component';
+import { ColNode } from 'src/utils/layout-models/col-node';
+import { GridNode } from 'src/utils/layout-models/grid-node';
+import { RowNode } from 'src/utils/layout-models/row-node';
+import { LayoutNodeDefaultComponent } from '../layout-module/layout-node-default/layout-node-default.component';
 import { LayoutNodeGridComponent } from '../layout-module/layout-node-grid/layout-node-grid.component';
 
 @Component({
@@ -11,15 +13,15 @@ import { LayoutNodeGridComponent } from '../layout-module/layout-node-grid/layou
 export class Tab1Page {
   layout = new GridNode([
     // eslint-disable-next-line max-len
-    new RowNode([ new ColNode(LayoutNodeColComponent, null), new ColNode(LayoutNodeColComponent, null), new ColNode(LayoutNodeColComponent, null) ]),
+    new RowNode([ new ColNode(LayoutNodeDefaultComponent, null), new ColNode(LayoutNodeDefaultComponent, null), new ColNode(LayoutNodeDefaultComponent, null) ]),
     new RowNode([ new ColNode(LayoutNodeGridComponent,
       new GridNode([
         // eslint-disable-next-line max-len
-        new RowNode([new ColNode(LayoutNodeColComponent, null), new ColNode(LayoutNodeColComponent, null), new ColNode(LayoutNodeColComponent, null)]),
+        new RowNode([new ColNode(LayoutNodeDefaultComponent, null), new ColNode(LayoutNodeDefaultComponent, null), new ColNode(LayoutNodeDefaultComponent, null)]),
         // eslint-disable-next-line max-len
-        new RowNode([new ColNode(LayoutNodeColComponent, null), new ColNode(LayoutNodeColComponent, null), new ColNode(LayoutNodeColComponent, null)]),
+        new RowNode([new ColNode(LayoutNodeDefaultComponent, null), new ColNode(LayoutNodeDefaultComponent, null), new ColNode(LayoutNodeDefaultComponent, null)]),
       ])) ]),
-    new RowNode([ new ColNode(LayoutNodeColComponent, null), new ColNode(LayoutNodeColComponent, null) ]),
+    new RowNode([ new ColNode(LayoutNodeDefaultComponent, null), new ColNode(LayoutNodeDefaultComponent, null) ]),
   ]);
 
   constructor() {}
