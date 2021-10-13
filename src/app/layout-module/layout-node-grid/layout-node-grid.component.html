@@ -1,6 +1,6 @@
-<ion-grid>
-    <ion-row *ngFor="let rowNode of (layoutNode | extractChildren)">
-        <ion-col *ngFor="let col of (rowNode | extractChildren)">
+<ion-grid class="no-padding no-margin">
+    <ion-row class="no-padding no-margin" *ngFor="let rowNode of (layoutNode | extractChildren)">
+        <ion-col class="no-padding no-margin" *ngFor="let col of (rowNode | extractChildren)">
             <ng-container #viewContainerRef></ng-container>
         </ion-col>
     </ion-row>
