@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { AppHeaderModule } from '../app-header/app-header.module';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { LayoutModuleModule } from '../layout-module/layout-module.module';
 import { Tab1PageRoutingModule } from './tab1-routing.module';
@@ -16,8 +15,7 @@ import { Tab1Page } from './tab1.page';
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    LayoutModuleModule,
-    AppHeaderModule
+    LayoutModuleModule
   ],
   declarations: [
     Tab1Page
