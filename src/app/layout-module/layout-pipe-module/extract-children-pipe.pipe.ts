@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { INode } from 'src/utils/layout-models/interfaces';
+import { INode } from 'src/app/layout-module/layout-models/interfaces';
 
 @Pipe({
   name: 'extractChildren',

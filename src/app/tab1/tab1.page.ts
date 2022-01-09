@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ColNode } from 'src/utils/layout-models/col-node';
-import { GridNode } from 'src/utils/layout-models/grid-node';
-import { RowNode } from 'src/utils/layout-models/row-node';
+import { ColNode } from 'src/app/layout-module/layout-models/col-node';
+import { GridNode } from 'src/app/layout-module/layout-models/grid-node';
+import { RowNode } from 'src/app/layout-module/layout-models/row-node';
 import { AppHeaderComponent } from '../app-header/app-header.component';
 import { LayoutNodeDefaultComponent } from '../layout-module/layout-node-default/layout-node-default.component';
 import { LayoutNodeGridComponent } from '../layout-module/layout-node-grid/layout-node-grid.component';

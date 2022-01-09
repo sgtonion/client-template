@@ -2,9 +2,9 @@ import {
   AfterViewInit, Component, ComponentFactoryResolver, Input, OnInit, QueryList,
   ViewChildren, ViewContainerRef
 } from '@angular/core';
-import { ColNode } from 'src/utils/layout-models/col-node';
-import { GridNode } from 'src/utils/layout-models/grid-node';
-import { RowNode } from 'src/utils/layout-models/row-node';
+import { ColNode } from 'src/app/layout-module/layout-models/col-node';
+import { GridNode } from 'src/app/layout-module/layout-models/grid-node';
+import { RowNode } from 'src/app/layout-module/layout-models/row-node';
 import { LayoutNodeDefaultComponent } from '../layout-node-default/layout-node-default.component';
 
 @Component({

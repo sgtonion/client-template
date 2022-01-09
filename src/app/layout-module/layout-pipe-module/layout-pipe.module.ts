@@ -15,4 +15,4 @@ import { ExtractChildrenPipePipe } from './extract-children-pipe.pipe';
     CommonModule
   ]
 })
-export class LayoutPipeModuleModule { }
+export class LayoutPipeModule { }

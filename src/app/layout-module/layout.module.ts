@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppHeaderModule } from '../app-header/app-header.module';
 import { LayoutNodeDefaultComponent } from './layout-node-default/layout-node-default.component';
 import { LayoutNodeGridComponent } from './layout-node-grid/layout-node-grid.component';
-import { LayoutPipeModuleModule } from './layout-pipe-module/layout-pipe-module.module';
+import { LayoutPipeModule } from './layout-pipe-module/layout-pipe.module';
 
 @NgModule({
   declarations: [
@@ -16,8 +16,8 @@ import { LayoutPipeModuleModule } from './layout-pipe-module/layout-pipe-module.
   ],
   imports: [
     CommonModule,
-    LayoutPipeModuleModule,
+    LayoutPipeModule,
     AppHeaderModule
   ]
 })
-export class LayoutModuleModule { }
+export class LayoutModule { }
