@@ -1,17 +1,20 @@
-import { LayoutNodeDefaultComponent } from 'src/app/layout-module/layout-node-default/layout-node-default.component';
-import { ColNode } from './col-node';
+import { LayoutNodeBaseWidgetComponent } from '../layout-node-base-widget/layout-node-base-widget.component';
+import { ColNode, ColTypeWidgetNode } from './col-node';
 import { INode, IPayload } from './interfaces';
+import { LayoutColTypeNodeComponents } from './type-aliases';
 
-export class RowNode implements INode<ColNode[]>, IPayload {
+export class RowNode implements INode<ColNode<LayoutColTypeNodeComponents>[]>, IPayload {
 
     constructor(
-        protected children?: ColNode[],
+        protected children?: ColNode<LayoutColTypeNodeComponents>[],
         protected data?: any
     ) {
-        this.children = (children || children?.length < 1) ? children : [new ColNode(LayoutNodeDefaultComponent, null)];
+        this.children = (children || children?.length < 1) ?
+        children :
+        [new ColTypeWidgetNode({component: LayoutNodeBaseWidgetComponent, data: null})];
     }
 
-    getChildren(): ColNode[] {
+    getChildren(): ColNode<LayoutColTypeNodeComponents>[] {
         return this.children;
     }
 
@@ -23,7 +26,7 @@ export class RowNode implements INode<ColNode[]>, IPayload {
         return this.data;
     }
 
-    getColumns(): ColNode[] {
+    getColumns(): ColNode<LayoutColTypeNodeComponents>[] {
         return this.getChildren();
     }
 

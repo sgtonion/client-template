@@ -1,11 +1,11 @@
 import {
-  AfterViewInit, Component, ComponentFactoryResolver, Input, OnInit, QueryList,
+  AfterViewInit, Component, Input, OnInit, QueryList,
   ViewChildren, ViewContainerRef
 } from '@angular/core';
-import { ColNode } from 'src/app/layout-module/layout-models/col-node';
+import { ColTypeWidgetNode } from 'src/app/layout-module/layout-models/col-node';
 import { GridNode } from 'src/app/layout-module/layout-models/grid-node';
 import { RowNode } from 'src/app/layout-module/layout-models/row-node';
-import { LayoutNodeDefaultComponent } from '../layout-node-default/layout-node-default.component';
+import { LayoutNodeBaseWidgetComponent } from '../layout-node-base-widget/layout-node-base-widget.component';
 
 @Component({
   selector: 'app-layout-node-grid',
@@ -14,29 +14,17 @@ import { LayoutNodeDefaultComponent } from '../layout-node-default/layout-node-d
 })
 export class LayoutNodeGridComponent implements OnInit, AfterViewInit {
   @Input() layoutNode: GridNode = new GridNode([
-    new RowNode([ new ColNode(LayoutNodeDefaultComponent, null) ])
+    new RowNode([new ColTypeWidgetNode({ component: LayoutNodeBaseWidgetComponent, data: null })])
   ]);
   @Input() data: any;
-  @ViewChildren('viewContainerRef', { read: ViewContainerRef }) viewContainerRef: QueryList<ViewContainerRef>;
+  @ViewChildren('viewContainerRef', { read: ViewContainerRef }) viewContainerRefQueryList: QueryList<ViewContainerRef>;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   ngAfterViewInit(): void {
-    this.loadComponent();
+    this.layoutNode.renderGrid(this.viewContainerRefQueryList);
   }
-
-  loadComponent() {
-    this.layoutNode.getRows().flatMap(node => node.getColumns()).forEach((node, index) => {
-      const viewContainerRef = this.viewContainerRef.get(index);
-      const component = node.getComponent();
-      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
-      const containerRef = viewContainerRef.createComponent(componentFactory);
-      (containerRef.instance as LayoutNodeGridComponent).layoutNode = node.getNode();
-      (containerRef.instance as LayoutNodeGridComponent).data = node.getData();
-    });
-  }
-
 }

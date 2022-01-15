@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppHeaderModule } from '../app-header/app-header.module';
-import { LayoutNodeDefaultComponent } from './layout-node-default/layout-node-default.component';
+import { LayoutNodeBaseWidgetComponent } from './layout-node-base-widget/layout-node-base-widget.component';
 import { LayoutNodeGridComponent } from './layout-node-grid/layout-node-grid.component';
 import { LayoutPipeModule } from './layout-pipe-module/layout-pipe.module';
 
 @NgModule({
   declarations: [
     LayoutNodeGridComponent,
-    LayoutNodeDefaultComponent,
+    LayoutNodeBaseWidgetComponent
   ],
   exports: [
     LayoutNodeGridComponent,
-    LayoutNodeDefaultComponent
+    LayoutNodeBaseWidgetComponent
   ],
   imports: [
     CommonModule,
